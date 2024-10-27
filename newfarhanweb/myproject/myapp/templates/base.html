@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content"IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {% block title %}
+    {% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Farhan</a>
+        </div>
+      </nav>
+    <a href="/" class="btn btn-primary">Home page</a>
+    <a href="/about" class="btn btn-warning">About us</a>
+    <a href="/form" class="btn btn-success">Form</a>
+    <hr>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+  <div class="containerr">
+      <p id="visitorCount">Visitor count: 1</p>
+      <p>IP Address: 223.24.168.130</p>
+      <p>Location: Bangkok, Thailand</p>
+      <p>Language: th</p>
+  </div>
+  <script>
+      // ตรวจสอบว่าเคยมี visitor count ใน local storage หรือยัง
+      let count = localStorage.getItem('visitorCount');
+      
+      if (count) {
+          // ถ้ามีอยู่แล้ว ให้เพิ่มค่า visitor count ขึ้น
+          count = parseInt(count) + 1;
+      } else {
+          // ถ้ายังไม่มี ให้เริ่มจาก 1
+          count = 1;
+      }
+
+      // บันทึกค่า visitor count ใหม่ใน local storage
+      localStorage.setItem('visitorCount', count);
+
+      // แสดง visitor count บนหน้าเว็บ
+      document.getElementById('visitorCount').textContent = `Visitor count: ${count}`;
+  </script>
+  <style>
+    .containerr {
+        background-color: white;
+        padding: 70px 0px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+</style>
+</body>
+</html>
